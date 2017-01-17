@@ -1,0 +1,28 @@
+#handW {
+	display: block;
+	margin: 0 auto;
+}
+.btn_group {width: 800px;margin: 10px auto;}
+.colorBtn {
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+	display: inline-block;
+	cursor: pointer;
+}
+.colorBtn.active {border:5px solid blueviolet;}
+#black_btn {
+	background: black;
+}
+#green_btn {
+	background: green;
+}
+#yellow_btn {
+	background: yellow;
+}
+#red_btn {
+	background: red;
+}
+#orange_btn {
+	background: orange;
+}

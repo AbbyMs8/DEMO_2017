@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	    body {
+	    	font-family: "Microsoft Yahei";
+	    }
+	    table {
+	    	margin :50px;
+	    }
+		.sort-table {
+			border-collapse:collapse;
+			text-align: center;
+		}
+		.sort-table thead tr {
+			background: #0066CC;
+			color: #fff;
+		}
+		.sort-table th {
+			padding: 3px 30px;
+			position: relative;
+		}
+		.sort-table td {
+			border-width:0 1px 1px 1px;
+			border-style: solid;
+			border-color: #003366;
+		}
+		.sortBtns {
+			display: inline-block;
+			position: absolute;
+    		right: 20%;
+		}
+		i.acs,i.desc {
+			display: block;
+			width: 0;
+			border-width: 5px;
+			border-style: solid;
+			border-color: transparent transparent #fff transparent;
+			cursor: pointer;
+		}
+		i.desc {
+			margin-top: 2px;
+			border-color:#fff transparent transparent transparent;
+		}
+	</style>
+</head>
+<body>
+	<table class="sort-table"></table>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="sortTable.js"></script>
+	<script type="text/javascript">
+			$(".sort-table").sortTable();
+	</script>
+</body>
+</html>
