@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		input {padding: 5px;display: block;width: 600px;margin-bottom: 20px;}
+		input:focus,button:focus {outline: 0;}
+	</style>
+</head>
+<body>
+	<h1>浮点数大数计算：</h1>
+	<input id="num_1" value="3333333333333333333333333333333333333333333.22222222222222222222">
+	<input id="num_2" value="56721111111111111111111111.88">
+	<button id="run">求和</button>
+	<p id="result"></p>
+	<script type="text/javascript">
+		(function(){
+			document.getElementById("run").addEventListener("click",function(){
+				var num_1 = document.getElementById("num_1").value,
+					num_2 = document.getElementById("num_2").value;
+				document.getElementById("result").innerHTML = plus(num_1, num_2);
+			},false);
+
+			function plus(a,b){
+				a = a.toString();b = b.toString();
+				// 是否匹配数字
+				if(!a.match(/^\d+(\.\d+)?$/) || !b.match(/^\d+(\.\d+)?$/)){
+					return "输入数字";
+				}
+				// 如果是整数，往后添小数点
+				if(!a.match(/\./)){
+					console.log(1);
+					a += '.';
+				}
+				if(!b.match(/\./)){
+					b += '.';
+				}
+				var separA = a.split(".");
+				var separB = b.split(".");
+				var intA = separA[0]?separA[0].length:0;
+				var intB = separB[0]?separB[0].length:0;
+				var decimalA = separA[1]?separA[1].length:0;
+				var	decimalB = separB[1]?separB[1].length:0;
+				var decimalMax = Math.max(decimalA,decimalB);
+				function supply(string,n,m){
+					/*
+						在string前面添加n个零，后面添加m个零
+					 */
+					for(var i = 0; i<n; i++){
+						string = "0" + string;
+					}
+					for(var i = 0; i<m; i++){
+						string = string + "0";
+					}
+					return string;
+				}
+				// 前后补上零
+				if(intA>intB){
+					b = supply(b,intA-intB,0);
+				}else{
+					a = supply(a,intB-intA,0);
+				}
+				if(decimalA>decimalB){
+					b = supply(b,0,decimalA-decimalB);
+				}else{
+					a = supply(a,0,decimalB-decimalA);
+				}
+				var arrA = a.split("");
+				var arrB = b.split("");
+				console.log(a);
+				console.log(b);
+
+				// 按位计算
+				var carry = 0;
+				var resultArr = [];
+				for(var i = arrA.length-1; i>=0;i--){
+					// 遇到小数点，不做计算
+					if(arrA[i]==="."){
+						resultArr.unshift(".");
+						continue;
+					}
+					var result = parseInt(arrA[i]) + parseInt(arrB[i]) + carry;
+					resultArr.unshift(result%10);
+					carry = parseInt(result/10);
+				}
+				return resultArr.join("");
+			}
+		})()
+	</script>
+</body>
+</html>
